@@ -1,8 +1,8 @@
 {
 	"id": "{1f71084c-b387-4717-8a6a-0688d402434b}",
 	"name": "Locative",
-	"type": 0,
-	"vendor": "Timo Beyel",
+	"type": 3,
+	"vendor": "",
 	"aliases": ["Locative"],
 	"parentRequirements": [],
 	"childRequirements": [],
