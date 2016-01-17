@@ -17,7 +17,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
-			$sid = $this->RegisterScript("Hook", "Hook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/Locative/module.php\");\n(new Locative(".$this->InstanceID."))->ProcessHookData();");
+			$sid = $this->RegisterScript("Hook", "Hook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/Locative/Module/module.php\");\n(new Locative(".$this->InstanceID."))->ProcessHookData();");
 			$this->RegisterHook("/hook/locative", $sid);
 		}
 		
