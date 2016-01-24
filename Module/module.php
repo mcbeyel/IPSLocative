@@ -84,7 +84,8 @@
 			SetValue($this->CreateVariableByIdent($deviceID, "Latitude", "Latitude", 2), floatval($_POST['latitude']));
 			SetValue($this->CreateVariableByIdent($deviceID, "Longitude", "Longitude", 2), floatval($_POST['longitude']));
 			SetValue($this->CreateVariableByIdent($deviceID, "Timestamp", "Timestamp", 1, "~UnixTimestamp"), intval(strtotime($_POST['timestamp'])));
-			SetValue($this->CreateVariableByIdent($deviceID, $this->ReduceGUIDToIdent($_POST['id']), utf8_decode($_POST['trigger']), 0, "~Presence"), intval($_GET['status']) =="arrival");
+			SetValue($this->CreateVariableByIdent($deviceID,  $this->ReduceGUIDToIdent($_POST['id']), "Presence", 0,"~Presence"), $_POST['trigger'])=="enter");
+			
 			
 		}
 		
