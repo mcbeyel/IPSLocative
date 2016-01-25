@@ -80,13 +80,33 @@
 				return;
 			}
 			
+			$trigger=strtolower(isset($_POST["trigger"]) ? $_POST["trigger"] : "");
+			$name=htmlentities(utf8_decode((isset($_REQUEST["name"]) ? $_REQUEST["name"] : "Home")));
+			
+			IPS_LogMessage("IPSLocative",print_r($_REQUEST,true));
 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, $this->ReduceGUIDToIdent($_POST['device']), "Device");
 			SetValue($this->CreateVariableByIdent($deviceID, "Latitude", "Latitude", 2), floatval($_POST['latitude']));
 			SetValue($this->CreateVariableByIdent($deviceID, "Longitude", "Longitude", 2), floatval($_POST['longitude']));
-			SetValue($this->CreateVariableByIdent($deviceID, "Timestamp", "Timestamp", 1, "~UnixTimestamp"), intval(strtotime($_POST['timestamp'])));
-			SetValue($this->CreateVariableByIdent($deviceID,  $this->ReduceGUIDToIdent($_POST['id']), "Presence", 0,"~Presence"), $_POST['trigger']=="enter");
+			SetValue($this->CreateVariableByIdent($deviceID, "Time", "Time", 1, "~UnixTimestamp"), $_POST['timestamp']);
+			SetValue($this->CreateVariableByIdent($deviceID, "LastTrigger","LastTrigger",3),$trigger);
 			
-			
+			$varID=$this->CreateVariableByIdent($deviceID, $name, $name, 0,"~Presence");
+			switch ($trigger) {
+				case "enter":
+				SetValue($varID, 1);
+				echo "Welcome!";
+				break;
+			case "exit":
+				SetValue($varID, 0);
+				echo "Bye!";
+				break;
+			case "test":
+				$status=isset($_GET["status"]) ? $_GET["status"]=="1":false;
+				echo "Test for $name received. Status $status";
+				SetValue($varID, $status);
+				break;
+				
+			}
 		}
 		
 		private function ReduceGUIDToIdent($guid) {
