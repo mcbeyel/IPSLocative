@@ -75,7 +75,7 @@
 			The following $_POST data are slightly different from Geofency
 			**/
 			
-			if(!isset($_REQUEST['device']) || !isset($_REQUEST['id']) || !isset($_REQUEST['trigger'])) {
+			if(!isset($_REQUEST['device']) || !isset($_REQUEST['trigger'])) {
 				IPS_LogMessage("Locative", "Malformed data: ".print_r($_REQUEST, true));
 				return;
 			}
