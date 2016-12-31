@@ -75,19 +75,19 @@
 			The following $_POST data are slightly different from Geofency
 			**/
 			
-			if(!isset($_POST['device']) || !isset($_POST['id']) || !isset($_POST['trigger'])) {
-				IPS_LogMessage("Locative", "Malformed data: ".print_r($_POST, true));
+			if(!isset($_REQUEST['device']) || !isset($_REQUEST['id']) || !isset($_REQUEST['trigger'])) {
+				IPS_LogMessage("Locative", "Malformed data: ".print_r($_REQUEST, true));
 				return;
 			}
 			
-			$trigger=strtolower(isset($_POST["trigger"]) ? $_POST["trigger"] : "");
+			$trigger=strtolower(isset($_REQUEST["trigger"]) ? $_REQUEST["trigger"] : "");
 			$name=htmlentities(utf8_decode((isset($_REQUEST["name"]) ? $_REQUEST["name"] : "Home")));
 			
 			IPS_LogMessage("IPSLocative",print_r($_REQUEST,true));
-			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, $this->ReduceGUIDToIdent($_POST['device']), "Device");
-			SetValue($this->CreateVariableByIdent($deviceID, "Latitude", "Latitude", 2), floatval($_POST['latitude']));
-			SetValue($this->CreateVariableByIdent($deviceID, "Longitude", "Longitude", 2), floatval($_POST['longitude']));
-			SetValue($this->CreateVariableByIdent($deviceID, "Time", "Time", 1, "~UnixTimestamp"), $_POST['timestamp']);
+			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, $this->ReduceGUIDToIdent($_REQUEST['device']), "Device");
+			SetValue($this->CreateVariableByIdent($deviceID, "Latitude", "Latitude", 2), floatval($_REQUEST['latitude']));
+			SetValue($this->CreateVariableByIdent($deviceID, "Longitude", "Longitude", 2), floatval($_REQUEST['longitude']));
+			SetValue($this->CreateVariableByIdent($deviceID, "Time", "Time", 1, "~UnixTimestamp"), $_REQUEST['timestamp']);
 			SetValue($this->CreateVariableByIdent($deviceID, "LastTrigger","LastTrigger",3),$trigger);
 			
 			$varID=$this->CreateVariableByIdent($deviceID, $name, $name, 0,"~Presence");
