@@ -82,9 +82,15 @@
 			
 			$trigger=strtolower(isset($_REQUEST["trigger"]) ? $_REQUEST["trigger"] : "simulate");
 			$name=htmlentities(utf8_decode((isset($_REQUEST["name"]) ? $_REQUEST["name"] : "Home")));
-            $status=isset($_GET["status"]) ? $_GET["status"]:1;
 
-			IPS_LogMessage("IPSLocative",print_r($_REQUEST,true));
+			$status=isset($_GET["status"]) ? $_GET["status"]:null;
+
+			if ($status!==null) {
+				$trigger="simulate";
+			}
+
+
+            IPS_LogMessage("IPSLocative",print_r($_REQUEST,true));
 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, $this->ReduceGUIDToIdent($_REQUEST['device']), "Device");
 			SetValue($this->CreateVariableByIdent($deviceID, "Latitude", "Latitude", 2), floatval($_REQUEST['latitude']));
 			SetValue($this->CreateVariableByIdent($deviceID, "Longitude", "Longitude", 2), floatval($_REQUEST['longitude']));
@@ -105,7 +111,7 @@
 				break;
 
 			case "simulate":
-				$status=
+
                 IPS_LogMessage("Locative", "Simulation:".$status);
 				echo "Test for $name received. Status $status";
 				SetValue($varID, $status);
