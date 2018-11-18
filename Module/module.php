@@ -83,6 +83,10 @@
 			$trigger=strtolower(isset($_REQUEST["trigger"]) ? $_REQUEST["trigger"] : "simulate");
 			$name=htmlentities(utf8_decode((isset($_REQUEST["name"]) ? $_REQUEST["name"] : "Home")));
 
+			/**
+			 *  if Status is specified, this is a simulation call
+			 * @var $status
+			 */
 			$status=isset($_GET["status"]) ? $_GET["status"]:null;
 
 			if ($status!==null) {
