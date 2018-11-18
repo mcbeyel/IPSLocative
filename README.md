@@ -20,5 +20,5 @@ Unfortunately, the Locative App does not forward the name of your geofence autom
 ## Testing
 
 * Open the settings dialog in the Locative app
-* Set "Global HTTP settings" to `http://_your IP-Symcon IP_:_your IP-Symcon port_/hook/locative?name=_a_name_for_your_home&status=1
-* The "status=1" will simulate presence, "status=0" will simulate absence
+* Set "Global HTTP settings" to `http://_your IP-Symcon IP_:_your IP-Symcon port_/hook/locative?name=_a_name_for_your_home&status=1`
+* The `status=1` will simulate presence, `status=0` will simulate absence
