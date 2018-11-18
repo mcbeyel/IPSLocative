@@ -75,12 +75,12 @@
 			The following $_POST data are slightly different from Geofency
 			**/
 			
-			if(!isset($_REQUEST['device']) || !isset($_REQUEST['trigger'])) {
+			if(!isset($_REQUEST['device'])) {
 				IPS_LogMessage("Locative", "Malformed data: ".print_r($_REQUEST, true));
 				return;
 			}
 			
-			$trigger=strtolower(isset($_REQUEST["trigger"]) ? $_REQUEST["trigger"] : "");
+			$trigger=strtolower(isset($_REQUEST["trigger"]) ? $_REQUEST["trigger"] : "simulate");
 			$name=htmlentities(utf8_decode((isset($_REQUEST["name"]) ? $_REQUEST["name"] : "Home")));
 			
 			IPS_LogMessage("IPSLocative",print_r($_REQUEST,true));
@@ -100,7 +100,7 @@
 				SetValue($varID, 0);
 				echo "Bye!";
 				break;
-			case "test":
+			case "simulate":
 				$status=isset($_GET["status"]) ? $_GET["status"]=="1":false;
 				echo "Test for $name received. Status $status";
 				SetValue($varID, $status);
